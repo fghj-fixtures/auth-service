@@ -1,0 +1,20 @@
+version: "1.0"
+service:
+  name: "auth-service"
+  internal_domain: "auth.fghj.internal"
+  build:
+    context: "."
+    dockerfile: "Dockerfile"
+  ports:
+    - "8080"
+  env:
+    - DB_HOST=postgres.fghj.internal
+  dependencies:
+    - kind: "infra"
+      name: "postgres"
+      image: "postgres:16"
+      env:
+        - POSTGRES_PASSWORD=devpassword
+        - POSTGRES_DB=auth
+      ports:
+        - "5432"
