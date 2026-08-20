@@ -9,6 +9,7 @@ service:
     - "8080"
   environment:
     DB_HOST: postgres.fghj.internal
+    AUTH_FEATURE_2FA: enabled
   dependencies:
     - kind: "infra"
       name: "postgres"
