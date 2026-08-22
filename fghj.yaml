@@ -18,3 +18,10 @@ service:
         POSTGRES_DB: auth
       ports:
         - "5432"
+flows:
+  signup-flow:
+    description: "New user signup — creates the account and sends a welcome notification. inventory-service and cart-service aren't needed here, so they stay out of this flow's scope even though they're both reachable through checkout-flow."
+    dependencies:
+      - kind: "service"
+        repo: "git@github.com:fghj-fixtures/notification-service.git"
+        default_branch: "main"
